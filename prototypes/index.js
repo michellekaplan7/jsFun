@@ -27,21 +27,29 @@ const kittyPrompts = {
 
     // Return an array of just the names of kitties who are orange e.g.
     // ['Tiger', 'Snickers']
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties
+      .filter(cat => cat.color === 'orange')
+      .map(orangeCat => orangeCat.name);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // getting in an array of objects w/ name, age and color properties
+    // want to get back an array of only the orange cats' names
+    // reach for a filter to get back orange cats (want a subset of the original data)
+    // only want the names of the cats
+    // reach for a map
+    // map over the filtered cats and get bakc their name property
   },
 
   sortByAge() {
     // Sort the kitties by their age
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.sort((a, b) => b.age - a.age);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // want to sort the array of objects by age from oldest to youngest
+    // reach for sort to sort cat age from oldest to youngest
   },
 
   growUp() {
@@ -58,12 +66,22 @@ const kittyPrompts = {
     // },
     // ...etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+    const result = kitties
+      .map(cat => {
+        let grownKitties = {};
+        grownKitties.name = cat.name;
+        grownKitties.age = cat.age + 2;
+        grownKitties.color = cat.color;
+        return grownKitties;
+      });
+    return result.sort((a, b) => b.age - a.age);
   }
+
+  // Annotation:
+  // go through the array of objects and add 2 years the the age
+  // reach for map to add 2 to each age
+  // reach for a sort to sort the array with the new ages from oldest to youngest
 };
-
-
 
 
 
