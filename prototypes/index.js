@@ -108,7 +108,7 @@ const clubPrompts = {
     //   ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'YOUR RESULT HERE';
     return result;
 
     // Annotation:
@@ -144,11 +144,18 @@ const modPrompts = {
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = mods.map(modDetails => {
+      let studentsPerInst = {};
+      studentsPerInst.mod = modDetails.mod;
+      studentsPerInst.studentsPerInstructor = modDetails.students / modDetails.instructors;
+      return studentsPerInst;
+    });
     return result;
 
+
     // Annotation:
-    // Write your annotation here as a comment
+    // reach for a map to create a new array of objects
+    // where the studentsPerInstructor will be the students divided by the instructors
   }
 };
 

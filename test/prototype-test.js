@@ -42,7 +42,7 @@ describe("PROTOTYPES", () => {
         age: 1,
         color: "tuxedo"
       }])
-    }), it.only("growUp", () => {
+    }), it("growUp", () => {
       const e = kittyPrompts.growUp();
       expect(e).to.deep.equal([{
         name: "Snickers",
@@ -90,7 +90,7 @@ describe("PROTOTYPES", () => {
       })
     })
   }), describe("Mod Prompts", () => {
-    it("studentsPerMod", () => {
+    it.only("studentsPerMod", () => {
       const e = modPrompts.studentsPerMod();
       expect(e).to.deep.equal([{
         mod: 1,
