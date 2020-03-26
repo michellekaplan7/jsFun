@@ -1,17 +1,51 @@
-const { kitties } = require('./datasets/kitties');
-const { clubs } = require('./datasets/clubs');
-const { mods } = require('./datasets/mods');
-const { cakes } = require('./datasets/cakes');
-const { classrooms } = require('./datasets/classrooms');
-const { breweries } = require('./datasets/breweries');
-const { nationalParks } = require('./datasets/nationalParks');
-const { books } = require('./datasets/books');
-const { weather } = require('./datasets/weather');
-const { instructors, cohorts } = require('./datasets/turing');
-const { bosses, sidekicks } = require('./datasets/bosses');
-const { constellations, stars } = require('./datasets/astronomy');
-const { weapons, characters } = require('./datasets/ultima');
-const { dinosaurs, humans, movies } = require('./datasets/dinosaurs');
+const {
+  kitties
+} = require('./datasets/kitties');
+const {
+  clubs
+} = require('./datasets/clubs');
+const {
+  mods
+} = require('./datasets/mods');
+const {
+  cakes
+} = require('./datasets/cakes');
+const {
+  classrooms
+} = require('./datasets/classrooms');
+const {
+  breweries
+} = require('./datasets/breweries');
+const {
+  nationalParks
+} = require('./datasets/nationalParks');
+const {
+  books
+} = require('./datasets/books');
+const {
+  weather
+} = require('./datasets/weather');
+const {
+  instructors,
+  cohorts
+} = require('./datasets/turing');
+const {
+  bosses,
+  sidekicks
+} = require('./datasets/bosses');
+const {
+  constellations,
+  stars
+} = require('./datasets/astronomy');
+const {
+  weapons,
+  characters
+} = require('./datasets/ultima');
+const {
+  dinosaurs,
+  humans,
+  movies
+} = require('./datasets/dinosaurs');
 
 
 
@@ -162,8 +196,6 @@ const modPrompts = {
 
 
 
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
@@ -186,11 +218,16 @@ const cakePrompts = {
     //    ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.map(cake => {
+      let flavorAndInStock = {};
+      flavorAndInStock.flavor = cake.cakeFlavor;
+      flavorAndInStock.inStock = cake.inStock;
+      return flavorAndInStock;
+    });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // reach for a map to create a new array of objects that just includes the flavor and inStock value
   },
 
   onlyInStock() {
@@ -214,22 +251,28 @@ const cakePrompts = {
     // ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.filter(cake => cake.inStock > 0);
     return result;
 
+
     // Annotation:
-    // Write your annotation here as a comment
+    // reach for a filter to return and array of objects that only includes cakes that have a inStock value of greater than 0
   },
 
   totalInventory() {
     // Return the total amount of cakes in stock e.g.
     // 59
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes
+      .map(cake => cake.inStock)
+      .reduce((acc, cakeInStock) => {
+        return acc + cakeInStock;
+      }, 0);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // first map of the array of objects to return an array of just the values inStock
+    // then reduce those values in the new array to the sum of the values
   },
 
   allToppings() {
@@ -237,11 +280,22 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((acc, cake) => {
+      cake.toppings.forEach(topping => {
+        if (!acc.includes(topping)) {
+          acc.push(topping);
+        }
+      });
+      return acc;
+    }, []);
     return result;
 
+
     // Annotation:
-    // Write your annotation here as a comment
+    // reduce the cakes array of objects into just an array of toppings
+    // reach for a reduce
+    // for every topping, if it's not already in the accumulator, push it into the accumulator
+    // reach for a forEach
   },
 
   groceryList() {
@@ -255,11 +309,27 @@ const cakePrompts = {
     //    ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+
+    const result = cakes.reduce((acc, cake) => {
+
+      cake.toppings.forEach(topping => {
+
+        if (!acc[topping]) {
+          acc[topping] = 1;
+        } else {
+          acc[topping] += 1;
+        }
+      });
+      return acc;
+    }, {});
+
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // need to reduce the list down to just an object with eatch topping as the key and the amount of times that item exists will be the value
+    // reach for a reduce
+    // for each topping count the amount of times that topping is in the grocery list
+    // reach for a foreach
   }
 };
 
@@ -290,11 +360,11 @@ const classPrompts = {
     //   { roomLetter: 'G', program: 'FE', capacity: 29 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.filter(classroom => classroom.program === 'FE');
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // reach for a filter to filter about just the 'FE' program from the array of classrooms
   },
 
   totalCapacities() {

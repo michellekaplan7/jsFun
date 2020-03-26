@@ -34,7 +34,7 @@ const context = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // not a new instance and not a method on the object
   },
 
   exerciseC() {
@@ -53,12 +53,9 @@ const context = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // "left of the dot" rule. Calling the method of getInfo on the car object
+    // which is being called on the event listener on the 'el'
   },
-
-  // * 'global window object'
-  // * 'nameOfObject'
-  // * 'instance of nameOfClassInstance'
 
   exerciseD() {
     const dog = {
@@ -79,8 +76,8 @@ const context = {
     const result = 'global window object';
     return result;
 
-    // Annotation:
-    // Write your annotation here as a comment
+    // this.breed is inside of the innerFunction in getBreed.
+    // not a new instance, not left of the dot
   },
 
   exerciseE() {
@@ -96,7 +93,7 @@ const context = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // not a new instance, not left of the dot
   },
 
   exerciseF() {
@@ -119,7 +116,7 @@ const context = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // new keyword, new instance
   },
 
   exerciseG() {
@@ -147,7 +144,7 @@ const context = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // the restart method includes a setTimeout function. That is just a function.
   },
 
   exerciseH() {
@@ -167,7 +164,7 @@ const context = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // left of the dot rule
   },
 
   exerciseI() {
@@ -190,7 +187,8 @@ const context = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment. Annotation should include explanation regarding the second argument of `poets` that is being passed
+    // left of the dot
+    // without the second argument of poets, you would log the window object
   },
 
   exerciseJ() {
@@ -204,7 +202,7 @@ const context = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment.
+    // left of dot rule
   },
 
   exerciseK() {
@@ -220,7 +218,7 @@ const context = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment.
+    // left of dot rule
   },
 
   exerciseL() {
@@ -240,7 +238,7 @@ const context = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // left of dot rule
   },
 
   exerciseM() {
@@ -263,7 +261,7 @@ const context = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // left of dot rule
   },
 
   exerciseN() {
@@ -289,7 +287,7 @@ const context = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // new keyword/new instance rule
   },
 
   exerciseO() {
@@ -305,7 +303,7 @@ const context = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    //
   },
 
   exerciseP() {
@@ -321,7 +319,7 @@ const context = {
 
     // What is the value of `this` when we call child.scream();
     // Annotation:
-    // Write your annotation here as a comment
+    // scream is a function, which will refer to the global window object
   }
 };
 
