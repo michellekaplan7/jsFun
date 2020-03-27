@@ -142,7 +142,16 @@ const clubPrompts = {
     //   ...etc
     // }
 
-    const result = 'YOUR RESULT HERE';
+    const result = clubs.reduce((acc, club) => {
+      club.members.forEach((member, i) => {
+        if (!acc[member]) {
+          acc[member] = [];
+        }
+        acc[member].push(club.club);
+      });
+
+      return acc;
+    }, {});
     return result;
 
     // Annotation:
@@ -426,11 +435,15 @@ const bookPrompts = {
     //   'Catch-22', 'Treasure Island']
 
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = books
+      .filter(book => book.genre != 'True Crime')
+      .filter(newBooks => newBooks.genre != 'Horror')
+      .map(noCrime => noCrime.title);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // filter out the true crime and horror books
+    // reach for a map and return just the book titles
 
   },
   getNewBooks() {
@@ -441,7 +454,15 @@ const bookPrompts = {
     //  { title: 'Life of Pi', year: 2001 },
     //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = books.reduce((acc, book) => {
+      if (book.published >= 1990) {
+        let obj = {};
+        obj.title = book.title;
+        obj.year = book.published;
+        acc.push(obj);
+      }
+      return acc;
+    }, []);
     return result;
 
     // Annotation:
@@ -464,7 +485,11 @@ const weatherPrompts = {
     // return an array of all the average temperatures. Eg:
     // [ 40, 40, 44.5, 43.5, 57, 35, 65.5, 62, 14, 46.5 ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = weather.reduce((total, city) => {
+      let average = (city.temperature.high + city.temperature.low) / 2;
+      total.push(average);
+      return total;
+    }, []);
     return result;
 
     // Annotation:
