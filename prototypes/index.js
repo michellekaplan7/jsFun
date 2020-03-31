@@ -503,7 +503,12 @@ const weatherPrompts = {
     // 'New Orleans, Louisiana is sunny.',
     // 'Raleigh, North Carolina is mostly sunny.' ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = weather
+      .filter(element => element.type === 'sunny' || element.type === 'mostly sunny')
+      .map(state => {
+        let sentence = `${state.location} is ${state.type}.`;
+        return sentence;
+      });
     return result;
 
     // Annotation:
@@ -519,7 +524,7 @@ const weatherPrompts = {
     //   temperature: { high: 49, low: 38 }
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = weather.sort((a, b) => a.humidity - b.humidity).pop();
     return result;
 
     // Annotation:
@@ -546,7 +551,19 @@ const nationalParksPrompts = {
     //   parksVisited: ["Rocky Mountain", "Acadia", "Zion"]
     //}
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = nationalParks.reduce((acc, park) => {
+      if (park.visited === true) {
+        acc['parksVisited'].push(park.name);
+      } else {
+        acc['parksToVisit'].push(park.name);
+
+      }
+
+      return acc;
+    }, {
+      parksToVisit: [],
+      parksVisited: []
+    });
     return result;
 
     // Annotation:
